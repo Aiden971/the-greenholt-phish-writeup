@@ -1,0 +1,16 @@
+oh-my-posh --init --shell pwsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kali.omp.json' | Invoke-Expression
+
+################## Beginning of the customization of auto suggestion###############
+Import-Module PSReadLine
+
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+Set-PSReadLineOption -ShowToolTips
+Set-PSReadLineOption -PredictionSource History
+
+#Set the color for Prediction (auto-suggestion)
+Set-PSReadLineOption -Colors @{InlinePrediction = 'DarkGreen'}
