@@ -34,7 +34,7 @@ In this scenario, we will be looking at a sample of a phishing email and analyze
 
 The email body is this:
 
-![email body](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/email%20body.png)
+![email body](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/email%20body.png)
 
 
 Some emails are very well crafted that you will not be able to tell the signs it is a phishing emails, but let us spot the obvious signs first.
@@ -51,7 +51,7 @@ however, if the recipient name is not mentioned, this is a huge red flag.
 
 The second red flag is the "reply-back" address as you can see below:
 
-![reply-back address](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/replyback.png)
+![reply-back address](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/replyback.png)
 
 The reply back address is not the same as the sender, which means 2 things:
 
@@ -75,7 +75,7 @@ Now, let us look into the advanced details that a normal user would not look int
 On Thunderbird, there is a "More" button on when the email is previewed.
 Inside it, click on "View source"
 
-![view source](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/view%20source.png)
+![view source](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/view%20source.png)
 
 This will open up a new window containing the full details of the email, including its headers and the hashed version of the email body.
 
@@ -92,7 +92,7 @@ The first ever hop contains the originating IP that sent this email, which is **
 
 Using WHOIS, we can figure out the owner of this IP.
 
-![whois](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/whois.png)
+![whois](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/whois.png)
 
 To check the SPF record of the original legitimate domain, we can use online tools or our OS command line.
 
@@ -104,7 +104,7 @@ dig TXT mutawamarine.com
 
 The following result is generated:
 
-![spf record](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/spf%20record.png)
+![spf record](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/spf%20record.png)
 
 The SPF record is **v=spf1 include:spf.protection.outlook.com -all**
 
@@ -117,7 +117,7 @@ If you are asking what this record will be used for, it will determine the polic
 
  To check the DMARC record, we can use mxtoolbox, in which the answer is **v=DMARC1; p=quarantine; fo=1**
 
-![dmarc](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/dmarc%20record.png)
+![dmarc](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/dmarc%20record.png)
 
 This indicates the policy is to quarantine the email should it fails the DMARC checks.
 <br>
@@ -128,18 +128,18 @@ You can check whether this attachment is malicious or not without interacting wi
 
 First, the headers indicate the attachment name:
 
-![attachment name](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/attachment%20name.png)
+![attachment name](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/attachment%20name.png)
 
 We need to generate the sha256 hash of this file, so we download it in a secure VM environment, head over to CyberChef tool, set the recipe to hashing, and input the file.
 
-![cyberchef](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/cyberchef.png)
+![cyberchef](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/cyberchef.png)
 
 The resulting hash will be 2e91c533615a9bb8929ac4bb76707b2444597ce063d84a4b33525e25074fff3f
 
 
 This hash will be useful, because we can copy it to VirusTotal to figure out if this is a popular malware submitted before, which indeed is.
 
-![virustotal](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/virustotal.png)
+![virustotal](https://github.com/Aiden971/the-greenholt-phish-writeup/blob/main/Screenshots/virustotal.png)
 
 
 From VirusTotal, we can also know the actual size of the attachment, which is 400.26 KB.
