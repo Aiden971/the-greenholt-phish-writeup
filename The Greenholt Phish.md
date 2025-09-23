@@ -22,6 +22,8 @@ The problem with phishing is that there is no sophisticated tool that can preven
 In this scenario, we will be looking at a sample of a phishing email and analyze it step by step to figure out how exactly it is a phishing email:
 
 
-The email body 
+The email body is this:
 
-<!--![email body](cybersecurity-writeups/Screenshots/The Greenholt Phish/email body.png)-->
+![email body](https://github.com/Aiden971/cybersecurity-writeups/blob/main/Screenshots/The%20Greenholt%20Phish/email%20body.png)
+
+
